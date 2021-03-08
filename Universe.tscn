@@ -1,0 +1,82 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://ship.tscn" type="PackedScene" id=1]
+[ext_resource path="res://dots.png" type="Texture" id=2]
+[ext_resource path="res://cld.png" type="Texture" id=3]
+[ext_resource path="res://Universe.gd" type="Script" id=6]
+
+[sub_resource type="CanvasItemMaterial" id=1]
+blend_mode = 1
+
+[node name="Universe" type="Node2D"]
+script = ExtResource( 6 )
+
+[node name="Ship" parent="." instance=ExtResource( 1 )]
+angular_damp = 5.0
+
+[node name="Camera2D" type="Camera2D" parent="Ship"]
+current = true
+
+[node name="_DEBUG" type="Label" parent="Ship/Camera2D"]
+visible = false
+margin_right = 86.0
+margin_bottom = 96.0
+text = "tefe"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="ParallaxBackground"]
+show_behind_parent = true
+margin_left = -2000.0
+margin_top = -2000.0
+margin_right = 2000.0
+margin_bottom = 2000.0
+color = Color( 0.0627451, 0.0156863, 0.117647, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="standard" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2( -1920, -1280 )
+motion_offset = Vector2( 1, 1 )
+motion_mirroring = Vector2( 3840, 2560 )
+
+[node name="cld" type="TextureRect" parent="ParallaxBackground/standard"]
+modulate = Color( 1, 1, 1, 0.0470588 )
+material = SubResource( 1 )
+margin_left = -235.248
+margin_top = 127.363
+margin_right = 3604.75
+margin_bottom = 2687.36
+texture = ExtResource( 3 )
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="mid" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2( 1024, 1024 )
+
+[node name="dots" type="TextureRect" parent="ParallaxBackground/mid"]
+visible = false
+margin_left = -2000.0
+margin_top = -1280.0
+margin_right = 2000.0
+margin_bottom = 1280.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="back" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.1, 0.1 )
+motion_mirroring = Vector2( 2056, 2056 )
